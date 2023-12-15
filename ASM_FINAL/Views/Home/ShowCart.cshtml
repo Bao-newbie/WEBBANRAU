@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ASM_FINAL.Models.Product>
+
+@{
+    ViewData["Title"] = "ShowCart";
+}
+
+<h1>ShowCart</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongTon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NSX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkAnh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            int total = 0;
+            var thanhtien = Convert.ToInt32(item.SoLuongTon) * Convert.ToInt32(item.Gia);
+            total += thanhtien;  
+            
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => thanhtien) $
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongTon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NSX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                <img style="width: 100px;height: 100px" src="/images/@item.LinkAnh" alt="Đây là ảnh sản phẩm: @item.Id">
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
